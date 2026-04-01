@@ -86,3 +86,4 @@ auto_generated: true    # falseなら人間が書いた
 - `/distill`: snapshot + journal を読み context/ に構造化ナレッジを生成・更新する
 - `/daily-planner`: 指定日のカレンダー・Linear・Slack を統合して TODO を生成し journal に書き出す（省略時は明日）
 - `/journal`: 日次の思考・感想・ふりかえりを `journal/YYYY-MM-DD.md` に書き出す
+- `/sync-memory`: vault の MEMORY.md と context/ を現在の vault 状態に合わせて整備する

@@ -58,6 +58,7 @@ notion:
 | `/distill` | snapshot + journal を読み、context/ に構造化ナレッジを生成・更新 |
 | `/daily-planner` | カレンダー・Linear・Slack を統合して TODO を生成し journal に書き出し |
 | `/journal` | 日次の思考・感想・ふりかえりを記録 |
+| `/sync-memory` | vault の MEMORY.md と context/ を現在の状態に合わせて整備 |
 
 ## 書き込みルール
 
