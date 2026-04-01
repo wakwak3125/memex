@@ -82,7 +82,7 @@ auto_generated: true    # falseなら人間が書いた
 - `/sync-all`: sync-slack と sync-linear を並列実行し snapshot を一括更新する
 - `/sync-linear`: LinearからIssue・スプリント情報を収集し `snapshot/linear.md` に書き出す
 - `/sync-slack`: Slackからメンション・参加スレッド情報を収集し `snapshot/slack.md` に書き出す
-- `/fetch-notion`: Notion ページ URL を指定して snapshot/ に保存する（context/ への構造化は `/distill` で別途）
+- `/sync-notion`: config.yaml で指定した Notion ページをカスタム prompt に従って vault に書き出す
 - `/distill`: snapshot + journal を読み context/ に構造化ナレッジを生成・更新する
 - `/daily-planner`: 指定日のカレンダー・Linear・Slack を統合して TODO を生成し journal に書き出す（省略時は明日）
 - `/journal`: 日次の思考・感想・ふりかえりを `journal/YYYY-MM-DD.md` に書き出す

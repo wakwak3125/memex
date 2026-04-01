@@ -13,3 +13,10 @@ slack:
       limit: 50
     - name: "pd-frontend"
       limit: 50
+    - name: "#pd-emr-eiyou"
+      limit: 50
+
+notion:
+  watch_pages:
+    - url: ""
+      prompt: ""
