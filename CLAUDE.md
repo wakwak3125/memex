@@ -18,16 +18,19 @@ Notionは必要に応じて都度参照する（定期同期はしない）。
 
 ```
 vault/
-├── context/     # 構造化・整理済みの長期記憶
-├── snapshot/    # Linear / Slack の定期ダンプ
-├── journal/     # 日次の思考・感想・ふりかえり
-└── MEMORY.md    # vaultの読み方・構造説明
+├── context/          # 構造化・整理済みの長期記憶
+├── snapshot/         # Linear / Slack の定期ダンプ（日付ベース）
+│   └── YYYY-MM-DD/   # 日付フォルダ
+│       ├── slack.md
+│       └── linear.md
+├── journal/          # 日次の思考・感想・ふりかえり
+└── MEMORY.md         # vaultの読み方・構造説明
 ```
 
 ## Writing Rules
 
 - 全レイヤーAI書き込み可
-- `snapshot/` は**上書き**（追記しない）。履歴はGitで管理
+- `snapshot/` は日付フォルダ単位で保存。同日の再実行は**上書き**
 - `journal/` は**追記**。同日に複数回書いても積み重ねる
 - `context/` は1ファイル200行以内。詳細はSaaS側へのリンクで代替
 
@@ -51,20 +54,14 @@ bash scripts/commit-vault.sh
 ```bash
 VAULT="{vault.path}"
 
-# 履歴一覧（日付単位のコミット）
-git -C "$VAULT" log --oneline snapshot/
+# 日付フォルダ一覧
+ls "$VAULT"/snapshot/
 
-# 特定日付のコミットを探す
-git -C "$VAULT" log --oneline --grep="snapshot: 2026-03-31"
+# 特定日付の snapshot を読む
+cat "$VAULT/snapshot/2026-03-31/slack.md"
 
-# 直前の内容を取得
-git -C "$VAULT" show HEAD~1:snapshot/slack.md
-
-# 現在との差分
-git -C "$VAULT" diff HEAD~1 -- snapshot/slack.md
-
-# 特定コミットの内容
-git -C "$VAULT" show {commit_hash}:snapshot/slack.md
+# 2日分を比較する
+diff "$VAULT/snapshot/2026-03-30/slack.md" "$VAULT/snapshot/2026-03-31/slack.md"
 ```
 
 ## Frontmatter Format
@@ -85,5 +82,6 @@ auto_generated: true    # falseなら人間が書いた
 - `/sync-all`: sync-slack と sync-linear を並列実行し snapshot を一括更新する
 - `/sync-linear`: LinearからIssue・スプリント情報を収集し `snapshot/linear.md` に書き出す
 - `/sync-slack`: Slackからメンション・参加スレッド情報を収集し `snapshot/slack.md` に書き出す
+- `/fetch-notion`: Notion ページ URL を指定して内容を取得し context/ に書き出す
 - `/distill`: snapshot + journal を読み context/ に構造化ナレッジを生成・更新する
 - `/journal`: 日次の思考・感想・ふりかえりを `journal/YYYY-MM-DD.md` に書き出す

@@ -35,7 +35,7 @@ snapshot/ と journal/ のデータを読み込み、context/ に構造化され
 
 以下のファイルをすべて読み込む:
 
-- `{vault.path}/snapshot/*.md` — 最新の snapshot
+- `{vault.path}/snapshot/{最新日付}/*.md` — 最新の snapshot（日付フォルダの中で最も新しいもの）
 - `{vault.path}/journal/*.md` — 直近7日分の journal
 - `{vault.path}/context/*.md` — 既存の context（更新のベースにする）
 
@@ -43,7 +43,8 @@ Git 履歴がある場合、snapshot の前回との差分も参考にする:
 
 ```bash
 VAULT="{vault.path}"
-git -C "$VAULT" diff HEAD~1 -- snapshot/ 2>/dev/null || true
+# 最新と前回の日付フォルダを比較
+ls -d "$VAULT"/snapshot/*/  # 日付フォルダ一覧から最新2つを比較
 ```
 
 ### 3. モードの判定

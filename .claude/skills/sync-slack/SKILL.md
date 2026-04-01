@@ -24,7 +24,7 @@ Slackから最新情報を収集し、Obsidian vaultに書き出す。
 
 ## Output
 
-- `{vault.path}/snapshot/slack.md`
+- `{vault.path}/snapshot/{YYYY-MM-DD}/slack.md`
 
 ## Configuration
 
@@ -119,7 +119,7 @@ response_format: "concise"
 
 ### 7. snapshot/slack.md への書き出し
 
-以下のフォーマットで `{VAULT_PATH}/snapshot/slack.md` に**上書き**で書き出す。
+以下のフォーマットで `{VAULT_PATH}/snapshot/{YYYY-MM-DD}/slack.md`（日付は実行日） に**上書き**で書き出す。
 
 ```markdown
 ---
