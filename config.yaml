@@ -1,7 +1,7 @@
 # memex configuration
 
 vault:
-  path: ~/Documents/vault/00-memex/
+  path: ~/Documents/Note/00-memex/
 
 slack:
   watch_channels:
