@@ -18,5 +18,13 @@ slack:
 
 notion:
   watch_pages:
-    - url: ""
-      prompt: ""
+    - url: "https://www.notion.so/henry-inc/Kentai-Standup-2026-2Q-e4b29671401141fe8521600dacbb0538"
+      prompt: |
+        Daily Standupの議事録です。
+        日付ごとにH2ブロックセクションがあり、その中にチームメンバーのデイリーの進捗が書かれています。
+        その日付のsnapshotとしてstandup.mdに、チームメンバーのデイリーの進捗を書き出してください。
+        日次のStandupの議事録を取得し、日次のTODOやチーム全体で注力すべきポイントを把握するために使います。
+    - url: "https://www.notion.so/henry-inc/76ef9eff7d174ccca3a199c44bd83f98"
+      prompt: |
+        個人のメモDBです。
+        context/memo/{page_title}.md に構造化して書き出してください。
