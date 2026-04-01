@@ -28,7 +28,8 @@ allowed-tools:
 ### 1. 設定の読み込み
 
 `config.yaml` を読み、`vault.path` を取得する。
-今日の日付から出力ファイルパスを決定する: `{vault.path}/journal/YYYY-MM-DD.md`
+`date` コマンドで現在の日付・時刻を取得する（**推測しない。必ずコマンドで取得する**）。
+出力ファイルパス: `{vault.path}/journal/YYYY-MM-DD.md`
 
 ### 2. 内容の整理
 
