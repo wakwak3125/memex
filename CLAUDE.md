@@ -18,12 +18,18 @@ Notionは必要に応じて都度参照する（定期同期はしない）。
 
 ```
 vault/
+├── inbox/            # 外部ソースからの取り込み（未整理）
+│   └── notion/        # Notion から同期したメモ
 ├── context/          # 構造化・整理済みの長期記憶
 ├── snapshot/         # Linear / Slack の定期ダンプ（日付ベース）
 │   └── YYYY-MM-DD/   # 日付フォルダ
 │       ├── slack.md
 │       └── linear.md
-├── journal/          # 日次の思考・感想・ふりかえり
+├── journal/          # 日々の記録・振り返り
+│   ├── timeline/      # 日次の思考・感想（追記型）
+│   ├── daily/         # 日次振り返り
+│   ├── weekly/        # 週次振り返り
+│   └── monthly/       # 月次振り返り
 └── MEMORY.md         # vaultの読み方・構造説明
 ```
 
@@ -31,7 +37,8 @@ vault/
 
 - 全レイヤーAI書き込み可
 - `snapshot/` は日付フォルダ単位で保存。同日の再実行は**上書き**
-- `journal/` は**追記**。同日に複数回書いても積み重ねる
+- `journal/timeline/` は**追記**。同日に複数回書いても積み重ねる
+- `journal/{daily|weekly|monthly}/` は振り返り。同じ対象期間は**上書き**（再生成）
 - `context/` は1ファイル200行以内。詳細はSaaS側へのリンクで代替
 
 ## Vault の Git 管理
@@ -85,5 +92,6 @@ auto_generated: true    # falseなら人間が書いた
 - `/sync-notion`: config.yaml で指定した Notion ページをカスタム prompt に従って vault に書き出す
 - `/distill`: snapshot + journal を読み context/ に構造化ナレッジを生成・更新する
 - `/daily-planner`: 指定日のカレンダー・Linear・Slack を統合して TODO を生成し journal に書き出す（省略時は明日）
-- `/journal`: 日次の思考・感想・ふりかえりを `journal/YYYY-MM-DD.md` に書き出す
+- `/journal`: 日次の思考・感想・ふりかえりを `journal/timeline/YYYY-MM-DD.md` に書き出す
 - `/sync-memory`: vault の MEMORY.md と context/ を現在の vault 状態に合わせて整備する
+- `/reflect`: daily/weekly/monthly の振り返りを生成し `journal/{daily|weekly|monthly}/` に書き出す

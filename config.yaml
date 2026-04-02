@@ -15,6 +15,12 @@ slack:
       limit: 50
     - name: "#pd-emr-eiyou"
       limit: 50
+    - name: "all-thank-you"
+      limit: 30
+    - name: "all-announcement"
+      limit: 30
+    - name: "management"
+      limit: 30
 
 notion:
   watch_pages:
@@ -26,4 +32,13 @@ notion:
     - url: "https://www.notion.so/henry-inc/76ef9eff7d174ccca3a199c44bd83f98"
       prompt: |
         個人のメモDBです。
-        context/memo/{page_title}.md に構造化して書き出してください。
+        inbox/notion/{page_title}.md に構造化して書き出してください。
+    - url: "https://www.notion.so/henry-inc/2ee7fab7f4e680488d18fe8307bcc3e0"
+      prompt: |
+        人事制度・評価制度のドキュメントです。
+        以下の観点で context/evaluation-criteria.md に構造化して書き出してください:
+        - グレード定義（各グレードの期待役割・スキル要件）
+        - 評価基準（何がどう評価されるか）
+        - 評価サイクル（時期・プロセス・決定者）
+        - 昇格条件（次のグレードに上がるために必要なこと）
+        自分の現在のグレードと次のグレードの差分が明確になるように整理すること。
