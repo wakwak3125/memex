@@ -20,7 +20,7 @@ daily / weekly / monthly の3種類に対応し、それぞれ異なる粒度・
 ## Output
 
 - `{vault.path}/journal/daily/{YYYY-MM-DD}.md`
-- `{vault.path}/journal/weekly/{YYYY-MM-DD}.md` （その週の月曜日の日付）
+- `{vault.path}/journal/weekly/{YYYY-MM-DD}〜{YYYY-MM-DD}.md` （週の開始日〜終了日）
 - `{vault.path}/journal/monthly/{YYYY-MM}.md`
 
 ## Configuration
@@ -120,7 +120,7 @@ collected_at: YYYY-MM-DDThh:mm
 auto_generated: true
 ---
 
-# Weekly Reflect: MM/DD 〜 MM/DD
+# Weekly Reflect: YYYY-MM-DD〜YYYY-MM-DD
 
 ## サマリー
 
@@ -172,7 +172,7 @@ collected_at: YYYY-MM-DDThh:mm
 auto_generated: true
 ---
 
-# Monthly Reflect: YYYY年MM月
+# Monthly Reflect: YYYY-MM
 
 ## サマリー
 

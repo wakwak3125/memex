@@ -29,7 +29,8 @@ vault/
 │   ├── timeline/      # 日次の思考・感想（追記型）
 │   ├── daily/         # 日次振り返り
 │   ├── weekly/        # 週次振り返り
-│   └── monthly/       # 月次振り返り
+│   ├── monthly/       # 月次振り返り
+│   └── meetings/      # 会議の議事録（Google Meet文字起こしベース）
 └── MEMORY.md         # vaultの読み方・構造説明
 ```
 
@@ -39,6 +40,7 @@ vault/
 - `snapshot/` は日付フォルダ単位で保存。同日の再実行は**上書き**
 - `journal/timeline/` は**追記**。同日に複数回書いても積み重ねる
 - `journal/{daily|weekly|monthly}/` は振り返り。同じ対象期間は**上書き**（再生成）
+- `journal/meetings/` は会議ごとに個別ファイル。同じ日の同じ会議は**上書き**
 - `context/` は1ファイル200行以内。詳細はSaaS側へのリンクで代替
 
 ## Vault の Git 管理
@@ -95,3 +97,4 @@ auto_generated: true    # falseなら人間が書いた
 - `/journal`: 日次の思考・感想・ふりかえりを `journal/timeline/YYYY-MM-DD.md` に書き出す
 - `/sync-memory`: vault の MEMORY.md と context/ を現在の vault 状態に合わせて整備する
 - `/reflect`: daily/weekly/monthly の振り返りを生成し `journal/{daily|weekly|monthly}/` に書き出す
+- `/sync-meetings`: Google Meet付きカレンダー予定の文字起こし・Geminiメモを取得し議事録として `journal/meetings/` に書き出す

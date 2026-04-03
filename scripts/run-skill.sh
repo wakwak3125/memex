@@ -7,7 +7,7 @@ mkdir -p "$LOG_DIR"
 
 COMMAND="${1:-/sync-all}"
 TIMEOUT="${2:-600}"  # デフォルト10分
-LABEL=$(echo "$COMMAND" | tr '/' '-' | sed 's/^-//')
+LABEL=$(echo "$COMMAND" | tr '/ ' '-' | sed 's/^-//')
 LOGFILE="$LOG_DIR/${LABEL}-$(date +%Y-%m-%d).log"
 
 echo "=== memex ${COMMAND} started at $(date) (timeout: ${TIMEOUT}s) ===" >> "$LOGFILE"

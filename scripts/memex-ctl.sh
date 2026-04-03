@@ -8,13 +8,14 @@ GUI_DOMAIN="gui/$(id -u)"
 
 ALL_JOBS=(
   "com.wakwak.memex-sync"
+  "com.wakwak.memex-sync-meetings"
   "com.wakwak.memex-reflect-daily"
   "com.wakwak.memex-reflect-weekly"
   "com.wakwak.memex-reflect-monthly"
 )
 
-JOB_SHORT=(sync daily weekly monthly)
-JOB_SCHEDULE=("08-23時 毎時" "平日 22:00" "金曜 22:00" "28日 22:00")
+JOB_SHORT=(sync meetings daily weekly monthly)
+JOB_SCHEDULE=("08-23時 毎時" "毎日 18:00" "平日 22:00" "金曜 22:00" "28日 22:00")
 
 usage() {
   cat <<EOF
@@ -32,6 +33,7 @@ Commands:
 
 Jobs:
   sync              sync-all (08:00-23:00 毎時)
+  meetings          sync-meetings (毎日 18:00)
   daily             reflect daily (平日 22:00)
   weekly            reflect weekly (毎週金曜 22:00)
   monthly           reflect monthly (毎月28日 22:00)
@@ -41,10 +43,11 @@ EOF
 
 resolve_job() {
   case "${1:-}" in
-    sync)    echo "com.wakwak.memex-sync" ;;
-    daily)   echo "com.wakwak.memex-reflect-daily" ;;
-    weekly)  echo "com.wakwak.memex-reflect-weekly" ;;
-    monthly) echo "com.wakwak.memex-reflect-monthly" ;;
+    sync)     echo "com.wakwak.memex-sync" ;;
+    meetings) echo "com.wakwak.memex-sync-meetings" ;;
+    daily)    echo "com.wakwak.memex-reflect-daily" ;;
+    weekly)   echo "com.wakwak.memex-reflect-weekly" ;;
+    monthly)  echo "com.wakwak.memex-reflect-monthly" ;;
     *)       echo "" ;;
   esac
 }
