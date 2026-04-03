@@ -1,0 +1,219 @@
+<mxfile host="app.diagrams.net" modified="2026-04-03T02:10:00.000Z" agent="memex" version="24.0.0">
+  <diagram id="memex-architecture" name="Architecture">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Title -->
+        <mxCell id="title" value="memex Architecture" style="text;html=1;fontSize=24;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="600" y="20" width="400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="外部記憶システム — 収集 → 整理 → 振り返り → 知識化" style="text;html=1;fontSize=13;fontColor=#666666;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="530" y="55" width="540" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- ============ External Sources (Left) ============ -->
+        <mxCell id="ext-group" value="External Sources" style="swimlane;startSize=25;fontSize=13;fontStyle=1;fillColor=#F5F5F5;strokeColor=#CCCCCC;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="110" width="160" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="slack" value="Slack" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://cdn.worldvectorlogo.com/logos/slack-new-logo.svg;fontSize=12;fontStyle=1;fillColor=#E8D5FF;strokeColor=#9673a6;rounded=1;arcSize=20;imageWidth=24;imageHeight=24;" vertex="1" parent="ext-group">
+          <mxGeometry x="40" y="45" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="linear" value="Linear" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673a6;fontSize=12;fontStyle=1;" vertex="1" parent="ext-group">
+          <mxGeometry x="20" y="120" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="notion" value="Notion" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673a6;fontSize=12;fontStyle=1;" vertex="1" parent="ext-group">
+          <mxGeometry x="20" y="180" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="gcal" value="Google Calendar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673a6;fontSize=12;fontStyle=1;" vertex="1" parent="ext-group">
+          <mxGeometry x="20" y="240" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="claude-sessions" value="Claude Sessions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673a6;fontSize=12;fontStyle=1;" vertex="1" parent="ext-group">
+          <mxGeometry x="20" y="295" width="120" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- ============ Skills / Pipeline (Center) ============ -->
+        <mxCell id="skills-group" value="Skills (Claude Code)" style="swimlane;startSize=25;fontSize=13;fontStyle=1;fillColor=#FFF2CC;strokeColor=#D6B656;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="110" width="500" height="540" as="geometry" />
+        </mxCell>
+
+        <!-- Collect Layer -->
+        <mxCell id="collect-label" value="① Collect" style="text;html=1;fontSize=12;fontStyle=5;fontColor=#B85450;align=left;" vertex="1" parent="skills-group">
+          <mxGeometry x="10" y="30" width="100" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="sync-all" value="/sync-all&#xa;(orchestrator)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=11;fontStyle=1;" vertex="1" parent="skills-group">
+          <mxGeometry x="180" y="30" width="140" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="sync-slack" value="/sync-slack" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;" vertex="1" parent="skills-group">
+          <mxGeometry x="30" y="85" width="120" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="sync-linear" value="/sync-linear" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;" vertex="1" parent="skills-group">
+          <mxGeometry x="170" y="85" width="120" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="sync-notion" value="/sync-notion" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;" vertex="1" parent="skills-group">
+          <mxGeometry x="310" y="85" width="120" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="sync-sessions" value="/sync-sessions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;" vertex="1" parent="skills-group">
+          <mxGeometry x="30" y="135" width="120" height="35" as="geometry" />
+        </mxCell>
+
+        <!-- sync-all → children -->
+        <mxCell id="sa-ss" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#D79B00;" edge="1" source="sync-all" target="sync-slack" parent="skills-group">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sa-sl" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#D79B00;" edge="1" source="sync-all" target="sync-linear" parent="skills-group">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sa-sn" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#D79B00;" edge="1" source="sync-all" target="sync-notion" parent="skills-group">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Plan Layer -->
+        <mxCell id="plan-label" value="② Plan" style="text;html=1;fontSize=12;fontStyle=5;fontColor=#6C8EBF;align=left;" vertex="1" parent="skills-group">
+          <mxGeometry x="10" y="195" width="100" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="daily-planner" value="/daily-planner&#xa;Calendar + Linear + Slack → TODO" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;" vertex="1" parent="skills-group">
+          <mxGeometry x="30" y="225" width="200" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Record Layer -->
+        <mxCell id="record-label" value="③ Record" style="text;html=1;fontSize=12;fontStyle=5;fontColor=#82B366;align=left;" vertex="1" parent="skills-group">
+          <mxGeometry x="10" y="290" width="100" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="journal-skill" value="/journal&#xa;思考・感想を追記" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=11;" vertex="1" parent="skills-group">
+          <mxGeometry x="30" y="320" width="160" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Reflect & Distill Layer -->
+        <mxCell id="reflect-label" value="④ Reflect &amp; Distill" style="text;html=1;fontSize=12;fontStyle=5;fontColor=#B85450;align=left;" vertex="1" parent="skills-group">
+          <mxGeometry x="10" y="385" width="150" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="reflect-skill" value="/reflect&#xa;daily / weekly / monthly 振り返り" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=11;" vertex="1" parent="skills-group">
+          <mxGeometry x="30" y="415" width="200" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="distill-skill" value="/distill&#xa;snapshot + journal → context 知識化" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=11;" vertex="1" parent="skills-group">
+          <mxGeometry x="250" y="415" width="220" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="sync-memory-skill" value="/sync-memory&#xa;MEMORY.md 整備" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=11;" vertex="1" parent="skills-group">
+          <mxGeometry x="30" y="480" width="160" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- ============ Vault (Right) ============ -->
+        <mxCell id="vault-group" value="Obsidian Vault (~/Documents/Note/00-memex/)" style="swimlane;startSize=25;fontSize=13;fontStyle=1;fillColor=#E6FFE6;strokeColor=#82B366;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="110" width="300" height="540" as="geometry" />
+        </mxCell>
+        <mxCell id="vault-memory" value="MEMORY.md&#xa;vault ナビゲーション" style="shape=note;whiteSpace=wrap;html=1;size=14;fillColor=#FFFFFF;strokeColor=#82B366;fontSize=11;align=center;" vertex="1" parent="vault-group">
+          <mxGeometry x="20" y="40" width="160" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="vault-snapshot" value="snapshot/YYYY-MM-DD/&#xa;├ slack.md&#xa;├ linear.md&#xa;├ standup.md&#xa;└ claude-log.md" style="shape=folder;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D6B656;fontSize=11;align=left;spacingLeft=10;tabWidth=80;tabHeight=15;tabPosition=left;" vertex="1" parent="vault-group">
+          <mxGeometry x="20" y="105" width="250" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="vault-inbox" value="inbox/notion/&#xa;└ {page_title}.md" style="shape=folder;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D6B656;fontSize=11;align=left;spacingLeft=10;tabWidth=60;tabHeight=15;tabPosition=left;" vertex="1" parent="vault-group">
+          <mxGeometry x="20" y="215" width="200" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="vault-journal" value="journal/&#xa;├ timeline/  (追記型)&#xa;├ daily/     (振り返り)&#xa;├ weekly/    (振り返り)&#xa;└ monthly/   (振り返り)" style="shape=folder;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#82B366;fontSize=11;align=left;spacingLeft=10;tabWidth=60;tabHeight=15;tabPosition=left;" vertex="1" parent="vault-group">
+          <mxGeometry x="20" y="290" width="250" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="vault-context" value="context/&#xa;構造化ナレッジ&#xa;(1ファイル200行以内)" style="shape=folder;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B85450;fontSize=11;align=left;spacingLeft=10;tabWidth=60;tabHeight=15;tabPosition=left;" vertex="1" parent="vault-group">
+          <mxGeometry x="20" y="410" width="200" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="vault-git" value="Git 管理&#xa;commit-vault.sh で自動コミット" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=10;fontStyle=2;" vertex="1" parent="vault-group">
+          <mxGeometry x="20" y="495" width="200" height="35" as="geometry" />
+        </mxCell>
+
+        <!-- ============ Config (Bottom) ============ -->
+        <mxCell id="config" value="config.yaml&#xa;vault.path / slack.watch_channels / notion.watch_pages" style="shape=document;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=11;fontStyle=1;size=0.15;" vertex="1" parent="1">
+          <mxGeometry x="380" y="700" width="340" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- ============ Edges: Sources → Skills ============ -->
+        <mxCell id="e-slack" value="" style="rounded=1;strokeColor=#9673a6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="slack" target="sync-slack" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-linear" value="" style="rounded=1;strokeColor=#9673a6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="linear" target="sync-linear" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-notion" value="" style="rounded=1;strokeColor=#9673a6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="notion" target="sync-notion" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-gcal" value="" style="rounded=1;strokeColor=#9673a6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="gcal" target="daily-planner" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-csess" value="" style="rounded=1;strokeColor=#9673a6;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="claude-sessions" target="sync-sessions" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ============ Edges: Skills → Vault ============ -->
+        <mxCell id="e-ss-v" value="" style="rounded=1;strokeColor=#D6B656;exitX=1;exitY=0.5;entryX=0;entryY=0.3;dashed=0;" edge="1" source="sync-slack" target="vault-snapshot" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-sl-v" value="" style="rounded=1;strokeColor=#D6B656;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="sync-linear" target="vault-snapshot" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-sn-v" value="" style="rounded=1;strokeColor=#D6B656;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="sync-notion" target="vault-inbox" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-ssess-v" value="" style="rounded=1;strokeColor=#D6B656;exitX=1;exitY=0.5;entryX=0;entryY=0.7;" edge="1" source="sync-sessions" target="vault-snapshot" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-dp-v" value="" style="rounded=1;strokeColor=#6C8EBF;exitX=1;exitY=0.5;entryX=0;entryY=0.2;" edge="1" source="daily-planner" target="vault-journal" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-j-v" value="" style="rounded=1;strokeColor=#82B366;exitX=1;exitY=0.5;entryX=0;entryY=0.4;" edge="1" source="journal-skill" target="vault-journal" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-r-v" value="" style="rounded=1;strokeColor=#B85450;exitX=1;exitY=0.5;entryX=0;entryY=0.8;" edge="1" source="reflect-skill" target="vault-journal" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-d-v" value="" style="rounded=1;strokeColor=#B85450;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="distill-skill" target="vault-context" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-sm-v" value="" style="rounded=1;strokeColor=#B85450;exitX=1;exitY=0.5;entryX=0;entryY=0.3;" edge="1" source="sync-memory-skill" target="vault-context" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ============ Edges: config → skills ============ -->
+        <mxCell id="e-cfg" value="reads" style="rounded=1;strokeColor=#666666;dashed=1;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" source="config" target="skills-group" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ============ User (Top Right) ============ -->
+        <mxCell id="user" value="User / AI Agent" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1310" y="130" width="40" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e-user-vault" value="read / browse&#xa;(Obsidian)" style="rounded=1;strokeColor=#82B366;exitX=0;exitY=0.5;entryX=1;entryY=0;dashed=1;" edge="1" source="user" target="vault-group" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-user-journal" value="/journal" style="rounded=1;strokeColor=#82B366;dashed=1;" edge="1" source="user" target="journal-skill" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1330" y="440" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Flow arrows between layers -->
+        <mxCell id="flow1" value="" style="shape=flexArrow;endArrow=classic;html=1;fillColor=#E6E6E6;strokeColor=#999999;width=8;endSize=4;" edge="1" parent="skills-group">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="245" y="175" as="sourcePoint" />
+            <mxPoint x="245" y="195" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow2" value="" style="shape=flexArrow;endArrow=classic;html=1;fillColor=#E6E6E6;strokeColor=#999999;width=8;endSize=4;" edge="1" parent="skills-group">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="245" y="275" as="sourcePoint" />
+            <mxPoint x="245" y="295" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow3" value="" style="shape=flexArrow;endArrow=classic;html=1;fillColor=#E6E6E6;strokeColor=#999999;width=8;endSize=4;" edge="1" parent="skills-group">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="245" y="365" as="sourcePoint" />
+            <mxPoint x="245" y="385" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
