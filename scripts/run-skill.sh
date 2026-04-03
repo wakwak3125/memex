@@ -16,10 +16,10 @@ cd "$REPO_DIR"
 
 # claude をバックグラウンドで起動し、タイムアウトを自前で管理
 /Users/wakwak/.local/bin/claude \
-  --model sonnet \
   --print \
   --dangerously-skip-permissions \
   --verbose \
+  --model claude-sonnet-4-6 \
   --output-format stream-json \
   -p "$COMMAND" 2>> "$LOGFILE" \
   | python3 -u -c "
