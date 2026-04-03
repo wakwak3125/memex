@@ -14,7 +14,6 @@
       "mcp__06cbe1e9-2439-4d7c-a33f-c0d4be9f6207__get_issue",
       "mcp__06cbe1e9-2439-4d7c-a33f-c0d4be9f6207__get_team",
       "mcp__06cbe1e9-2439-4d7c-a33f-c0d4be9f6207__list_teams",
-      "mcp__06cbe1e9-2439-4d7c-a33f-c0d4be9f6207__get_authenticated_user",
       "mcp__06cbe1e9-2439-4d7c-a33f-c0d4be9f6207__list_issue_statuses",
       "mcp__06cbe1e9-2439-4d7c-a33f-c0d4be9f6207__get_issue_status",
       "mcp__06cbe1e9-2439-4d7c-a33f-c0d4be9f6207__list_projects",
@@ -43,8 +42,11 @@
       "mcp__af24ac78-a605-4526-995a-c20bba582399__gcal_respond_to_event",
       "Write(~/Documents/Note/00-memex/**)",
       "Edit(~/Documents/Note/00-memex/**)",
-      "Bash(bash scripts/commit-vault.sh:*)",
-      "Bash(bash ~/Documents/Note/00-memex/**)"
+      "Bash(bash scripts/commit-vault.sh)",
+      "Bash(bash /Users/wakwak/src/github.com/wakwak3125/memex/scripts/commit-vault.sh)",
+      "Bash(date*)",
+      "Bash(mkdir -p ~/.claude/session-logs/archive)",
+      "Bash(mv ~/.claude/session-logs/*.jsonl ~/.claude/session-logs/archive/)"
     ]
   }
 }

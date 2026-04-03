@@ -6,21 +6,19 @@ vault:
 slack:
   watch_channels:
     - name: "pd-emr-k部"
-      limit: 50
+      limit: 20
     - name: "pd-emr-eiyou"
-      limit: 50
+      limit: 20
     - name: "pd-backend"
-      limit: 50
+      limit: 20
     - name: "pd-frontend"
-      limit: 50
-    - name: "#pd-emr-eiyou"
-      limit: 50
+      limit: 20
     - name: "all-thank-you"
-      limit: 30
+      limit: 15
     - name: "all-announcement"
-      limit: 30
+      limit: 15
     - name: "management"
-      limit: 30
+      limit: 15
 
 notion:
   watch_pages:
