@@ -14,8 +14,21 @@ echo "=== memex ${COMMAND} started at $(date) (timeout: ${TIMEOUT}s) ===" >> "$L
 
 cd "$REPO_DIR"
 
+# ネットワーク接続を待機（スリープ復帰直後対策）
+MAX_WAIT=120
+WAIT=0
+while ! curl -s --max-time 5 https://api.anthropic.com > /dev/null 2>&1; do
+  WAIT=$((WAIT + 10))
+  if [ "$WAIT" -ge "$MAX_WAIT" ]; then
+    echo "=== ERROR: network not available after ${MAX_WAIT}s, aborting ===" >> "$LOGFILE"
+    exit 1
+  fi
+  # caffeinate でスリープ復帰を維持しつつ待機
+  caffeinate -i sleep 10
+done
+
 # claude をバックグラウンドで起動し、タイムアウトを自前で管理
-/Users/wakwak/.local/bin/claude \
+caffeinate -i /Users/wakwak/.local/bin/claude \
   --print \
   --dangerously-skip-permissions \
   --verbose \
