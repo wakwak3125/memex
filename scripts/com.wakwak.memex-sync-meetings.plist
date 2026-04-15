@@ -12,11 +12,11 @@
         <string>/sync-meetings</string>
     </array>
 
-    <!-- 毎日 18:00 実行 -->
+    <!-- 毎日 22:00 実行 -->
     <key>StartCalendarInterval</key>
     <dict>
         <key>Hour</key>
-        <integer>18</integer>
+        <integer>22</integer>
         <key>Minute</key>
         <integer>0</integer>
     </dict>
