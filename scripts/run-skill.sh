@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+set -m  # job control: each pipeline runs in its own process group so we can kill the whole group on timeout
 
 REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 LOG_DIR="$REPO_DIR/logs"
@@ -63,6 +64,9 @@ for line in sys.stdin:
 " >> "$LOGFILE" &
 
 PID=$!
+# With job control, the pipeline gets its own process group whose ID equals the leader PID (caffeinate).
+# Killing the negative PID signals every process in the group (caffeinate, claude, python).
+PGID=$PID
 
 # タイムアウト監視
 ELAPSED=0
@@ -70,7 +74,9 @@ while kill -0 "$PID" 2>/dev/null; do
   sleep 5
   ELAPSED=$((ELAPSED + 5))
   if [ "$ELAPSED" -ge "$TIMEOUT" ]; then
-    kill "$PID" 2>/dev/null || true
+    kill -TERM -- "-$PGID" 2>/dev/null || true
+    sleep 2
+    kill -KILL -- "-$PGID" 2>/dev/null || true
     wait "$PID" 2>/dev/null || true
     echo "" >> "$LOGFILE"
     echo "=== TIMEOUT: memex ${COMMAND} killed after ${TIMEOUT}s at $(date) ===" >> "$LOGFILE"
