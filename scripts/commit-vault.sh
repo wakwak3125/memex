@@ -4,8 +4,14 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 CONFIG="$SCRIPT_DIR/../config.yaml"
 
-# config.yaml から vault.path を取得
-VAULT=$(grep 'path:' "$CONFIG" | head -1 | sed 's/.*path: *//' | sed "s|~|$HOME|")
+# config.yaml から vault.path を取得（相対パスはリポジトリルート基準で解決）
+REPO_DIR="$SCRIPT_DIR/.."
+RAW_PATH=$(grep 'path:' "$CONFIG" | head -1 | sed 's/.*path: *//' | sed "s|~|$HOME|")
+if [[ "$RAW_PATH" == ./* || "$RAW_PATH" == ../* ]]; then
+  VAULT="$(cd "$REPO_DIR" && cd "$RAW_PATH" && pwd)"
+else
+  VAULT="$RAW_PATH"
+fi
 
 # 変更をステージ
 git -C "$VAULT" add -A
